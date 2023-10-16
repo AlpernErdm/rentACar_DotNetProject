@@ -10,6 +10,8 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             CarManager carManager = new CarManager(new InMemoryCarDal());
+            Car car1 = new Car();
+            
 
             foreach (var car in carManager.GetAll())
             {
@@ -26,7 +28,7 @@ namespace ConsoleUI
                 Description = "Aciklama"
             });
 
-            Console.WriteLine("\n Araçların Hepsinin Listesi \n");
+            Console.WriteLine("\nAraçların Hepsinin Listesi \n");
 
             foreach (var car in carManager.GetAll())
             {
@@ -41,6 +43,8 @@ namespace ConsoleUI
             {
                 Console.WriteLine("Araç ID: " + car.CarId + "  - Araç Açıklama: " + car.Description + "  - Günlük Fiyat:" + car.DailyPrice);
             }
+
+            
 
         }
     }

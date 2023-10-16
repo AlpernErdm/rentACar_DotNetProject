@@ -18,9 +18,31 @@ namespace DataAccess.Concrete.InMemory
                 new Car { CarId = 2, BrandId = 2,ColorId=3,DailyPrice=200,ModelYear=2016,Description="Citroen 3008"},
                 new Car { CarId = 3, BrandId = 2,ColorId=2,DailyPrice=150,ModelYear=2015,Description="Citroen 2008"},
                 new Car { CarId = 4, BrandId = 3,ColorId=4,DailyPrice=400,ModelYear=2019,Description="Audi A5"},
-                new Car { CarId = 5, BrandId = 1,ColorId=1,DailyPrice=500,ModelYear=2021,Description="Citroen 3008"},
+                new Car { CarId = 5, BrandId = 1,ColorId=1,DailyPrice=500,ModelYear=2021,Description="BMW 5.20"},
 
             };
+            var res = _cars.Any(p => p.Description == "Audi A5");
+            Console.WriteLine("Any linq sorgusu cevabı :" + res);
+            Console.WriteLine("******************");
+
+            var res1 = _cars.Find(p => p.CarId == 2);
+            Console.WriteLine("Find linq sorgusu cevabı : " +res1.Description);
+            Console.WriteLine("******************");
+
+            var res2 = _cars.FindAll(p => p.Description.Contains("oen"));
+            foreach (var car in res2)
+            {
+                Console.WriteLine(car.Description);
+            }
+            Console.WriteLine("******************");
+            var res3 = from p in _cars
+                       where p.DailyPrice > 200 &&p.ModelYear>2005  
+                       select p;
+            foreach (var cars in res3)
+            {
+                Console.WriteLine(cars.Description);
+            }
+            Console.WriteLine("-********************");
         }
         public void Add(Car car)
         {
@@ -55,6 +77,7 @@ namespace DataAccess.Concrete.InMemory
             carToUpdate.ModelYear = car.ModelYear;
 
         }
+
 
 
     }
