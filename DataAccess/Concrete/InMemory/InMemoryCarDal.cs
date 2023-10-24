@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,11 @@ namespace DataAccess.Concrete.InMemory
 
         }
 
+        public void Delete(Car entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Car Get(Expression<Func<Car, bool>> filter)
         {
             throw new NotImplementedException();
@@ -76,6 +82,11 @@ namespace DataAccess.Concrete.InMemory
      
 
         public List<Car> GetById(int CarId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailsDto> GetCarDetails()
         {
             throw new NotImplementedException();
         }
