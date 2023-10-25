@@ -42,7 +42,7 @@ namespace ConsoleUI
                 Console.WriteLine("Araç ID: " + car.CarId + "  - Araç Açıklama: " + car.Description + "  - Günlük Fiyat:" + car.DailyPrice);
             }
 
-            carManager.Remove(new Car { CarId = 7 });
+            carManager.Delete(new Car { CarId = 7 });
 
             Console.WriteLine("Seçilen araç satışı kaldırıldı \n");
 

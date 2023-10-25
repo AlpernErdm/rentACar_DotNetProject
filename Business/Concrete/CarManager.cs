@@ -27,11 +27,7 @@ namespace Business.Concrete
         {
             _carDal.Add(car);
         }
-        public void Remove(Car car)
-        {
-            _carDal.Remove(car);
-        }
-
+       
         public void Update(Car car)
         {
             _carDal.Update(car);
@@ -49,8 +45,7 @@ namespace Business.Concrete
 
         public void Delete(Car car)
         {
-            
-           _carDal.Remove(car);
+            _carDal.Delete(car);
         }
     }
 }
