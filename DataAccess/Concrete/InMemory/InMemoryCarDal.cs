@@ -54,7 +54,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Car entity)
         {
-            throw new NotImplementedException();
+            _cars.Remove(entity);
         }
 
         public Car Get(Expression<Func<Car, bool>> filter)

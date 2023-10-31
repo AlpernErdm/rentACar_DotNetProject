@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -19,33 +21,48 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IDataResult<Car> GetById(int id)
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<Car> (_carDal.Get(p => p.CarId == id));
         }
-        public void Add(Car car)
+        public IDataResult<List<Car>> GetAll()
         {
+            if (DateTime.Now.Hour == 22)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime); //Bakım=maintenance
+            }
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
+        }
+        public IResult Add(Car car)
+        {
+            if (car.Description.Length < 2)
+            {
+                return new ErrorResult(Messages.CarNameInvalid);
+            }
             _carDal.Add(car);
-        }
-       
-        public void Update(Car car)
-        {
-            _carDal.Update(car);
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public IResult Update(Car car)
         {
-            return _carDal.GetAll(p => p.BrandId == id);
+            _carDal.Update(car);                               //Result olsaydı eğer hem success hem message parametrelerini döndürmemiz gerekecekti
+            return new SuccessResult(Messages.CarUpdated); //SuccessResult olduğu için baseden direk true geliyo ve sadece mesaj yazmamızı istiyo
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public IDataResult<Car>GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetAll(p => p.ColorId == id);
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.BrandId ==brandId),"Başarıyla listelendi");
         }
 
-        public void Delete(Car car)
+        public IDataResult<Car> GetCarsByColorId(int colorId)
+        {
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.ColorId == colorId),"Başarıyla listelendi");
+        }
+
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new Result(true, "Başarıyla silindi");
         }
     }
 }
