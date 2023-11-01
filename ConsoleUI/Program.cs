@@ -10,17 +10,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-           //CarTest();
-
+            CarTest();
+           // Test();
+     
         }
 
         private static void CarTest()
         {
-            CarManager carManager = new CarManager(new InMemoryCarDal());
+            CarManager carManager = new CarManager(new EfCarDal());
             Car car1 = new Car();
 
 
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("Araç ID: " + car.CarId + "  - Araç Açıklama: " + car.Description + "  - Günlük Fiyat:" + car.DailyPrice);
             }
@@ -37,7 +38,7 @@ namespace ConsoleUI
 
             Console.WriteLine("\nAraçların Hepsinin Listesi \n");
 
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("Araç ID: " + car.CarId + "  - Araç Açıklama: " + car.Description + "  - Günlük Fiyat:" + car.DailyPrice);
             }
@@ -46,27 +47,23 @@ namespace ConsoleUI
 
             Console.WriteLine("Seçilen araç satışı kaldırıldı \n");
 
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("Araç ID: " + car.CarId + "  - Araç Açıklama: " + car.Description + "  - Günlük Fiyat:" + car.DailyPrice);
             }
-            CarManager carManager1 = new CarManager(new EfCarDal());
-            foreach (var product in carManager1.GetCarsByBrandId(2)) //CategoryId'sı 2 olanları getirir
-            {
-                Console.WriteLine(product.Description);
-            }
-
-            Console.WriteLine("**********************");
-            foreach (var product1 in carManager1.GetCarsByColorId(1)) //Hepsini getirir
-            {
-                Console.WriteLine(product1.Description);
-
-
-            }
+      
           
 
 
         }
+        private static void Test()
+        {
+            CarManager carManager1 = new CarManager(new EfCarDal());
+            var result=carManager1.GetCarsByBrandId(2);
+            Console.WriteLine(result);
 
+
+        }
+       
     }
 }
