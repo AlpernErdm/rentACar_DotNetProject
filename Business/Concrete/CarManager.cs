@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            _carDal.Update(car);                               //Result olsaydı eğer hem success hem message parametrelerini döndürmemiz gerekecekti
+            _carDal.Update(car);                            //Result olsaydı eğer hem success hem message parametrelerini döndürmemiz gerekecekti
             return new SuccessResult(Messages.CarUpdated); //SuccessResult olduğu için baseden direk true geliyo ve sadece mesaj yazmamızı istiyo
         }
 

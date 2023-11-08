@@ -11,7 +11,7 @@ using Core.DataAccess.EntityFramework;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    class EfBrandDal : EfEntityRepositoryBase<Brand, ReCapProjectDbContext>, IBrandDal
+    public class EfBrandDal : EfEntityRepositoryBase<Brand, ReCapProjectDbContext>, IBrandDal
     {
        
     }

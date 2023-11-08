@@ -10,10 +10,10 @@ namespace Business.Abstract
 {
     public interface ICustomerService
     {
-        IDataResult<List<Customer>> GetAllCustomers();
-        IResult AddCustomer(Customer customer);
-        IResult UpdateCustomer(Customer customer);
-        IResult DeleteCustomer(Customer customer);
-        IDataResult<Customer> GetCustomerById(int customerId);
+        IDataResult<List<Customer>> GetAll();
+        IResult Add(Customer customer);
+        IResult Update(Customer customer);
+        IResult Delete(Customer customer);
+        IDataResult<Customer> GetById(int customerId);
     }
 }

@@ -18,25 +18,25 @@ namespace Business.Concrete
         {
             _rentalDal = rentalDal;
         }
-        public IResult AddRental(Rental rental)
+        public IResult Add(Rental rental)
         {
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.AddedRental);
         }
 
-        public IResult DeleteRental(Rental rental)
+        public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.RemovedRental);
         }
 
-        public IDataResult<List<Rental>> GetAllRentals()
+        public IDataResult<List<Rental>> GetAll()
         {
             var rentals = _rentalDal.GetAll();
             return new SuccessDataResult<List<Rental>>(rentals);
         }
 
-        public IDataResult<Rental> GetRentalById(int rentalId)
+        public IDataResult<Rental> GetById(int rentalId)
         {
          
            
@@ -48,7 +48,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(res, Messages.FilteredRental);
         }
 
-        public IResult UpdateRental(Rental rental)
+        public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.UpdatedRental);
